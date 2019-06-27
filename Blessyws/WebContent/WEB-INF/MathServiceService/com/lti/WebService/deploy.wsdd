@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MathServiceService WSDL service -->
+
+  <service name="MathService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://WebService.lti.com"/>
+      <parameter name="wsdlServiceElement" value="MathServiceService"/>
+      <parameter name="schemaQualified" value="http://WebService.lti.com"/>
+      <parameter name="wsdlServicePort" value="MathService"/>
+      <parameter name="className" value="com.lti.WebService.MathService"/>
+      <parameter name="wsdlPortType" value="MathService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://WebService.lti.com" xmlns:retNS="http://WebService.lti.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="add" qname="operNS:add" returnQName="retNS:addReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://WebService.lti.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService.lti.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService.lti.com" xmlns:retNS="http://WebService.lti.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="multiply" qname="operNS:multiply" returnQName="retNS:multiplyReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://WebService.lti.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService.lti.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:b" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="add multiply"/>
+
+  </service>
+</deployment>
